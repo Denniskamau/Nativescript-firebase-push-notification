@@ -16,6 +16,8 @@ export class ItemsComponent implements OnInit {
 
     ngOnInit(): void {
         this.items = this.itemService.getItems();
+      
+        // this.subscribe
         firebase.addOnMessageReceivedCallback((message) => {
             console.log('[Firebase] onMessageReceivedCallback:', { message });
             this.navigateToNotification(message)
@@ -27,5 +29,9 @@ export class ItemsComponent implements OnInit {
     navigateToNotification(data) {
         this.ngZone.run(() => this.routerExtensions.navigate(['/notification', data],{clearHistory:false}))
 
+    }
+    subscribe() {
+        console.log('subscribing')
+        firebase.subscribeToTopic("news").then(() => console.log("Subscribed to topic"));  
     }
 }

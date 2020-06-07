@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
 
             onPushTokenReceivedCallback: (token) => {
                 console.log('[Firebase] onPushTokenReceivedCallback:', { token });
+                firebase.subscribeToTopic("movies").then(() => console.log("Subscribed to topic movies"));
             },
 
             // onMessageReceivedCallback: (message: firebase.Message) => {
@@ -26,6 +27,8 @@ export class AppComponent implements OnInit {
             .then(() => {
                 console.log('[Firebase] Initialized');
                 firebase.subscribeToTopic("news").then(() => console.log("Subscribed to topic"));
+                firebase.subscribeToTopic("tech").then(() => console.log("Subscribed to topic tech"));
+                firebase.subscribeToTopic("movies").then(() => console.log("Subscribed to topic"));
             })
             .catch(error => {
                 console.log('[Firebase] Initialize', { error });
